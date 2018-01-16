@@ -1,5 +1,6 @@
 package com.allsopg.game.actor;
 
+import com.allsopg.game.sound.SoundLink;
 import com.allsopg.game.utility.TweenData;
 import com.allsopg.game.utility.TweenDataAccessor;
 import com.allsopg.game.utility.UniversalResource;
@@ -22,11 +23,13 @@ import aurelienribon.tweenengine.TweenManager;
 public class BonusSprite extends AnimatedSprite {
     private TweenData tweenData;
     private TweenManager tweenManager;
+    private SoundLink soundLink;
 
     public BonusSprite(String atlasString, Texture t, Vector2 pos, Animation.PlayMode loopType){
         super(atlasString, t, loopType);
         this.setPosition(pos.x,pos.y);
         initTweenData();
+        soundLink = new SoundLink();
     }
 
     private void initTweenData(){
@@ -56,5 +59,9 @@ public class BonusSprite extends AnimatedSprite {
                 .target(180).start().start(tweenManager).to(tweenData,TweenDataAccessor.TYPE_SCALE,250f)
                 .target(.15f).start(tweenManager).to(tweenData,TweenDataAccessor.TYPE_COLOUR,500f)
                 .target(.15f,.15f,.15f,.0f).start(tweenManager);
+
+        soundLink.play(3);
+        soundLink.play(1);
+        soundLink.play(2);
         }
 }
